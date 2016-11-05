@@ -26,3 +26,12 @@ def shuffle_word(word):
 #scrambleSentence()
 #reverseString()
 shuffle_word('amazing')
+
+
+def newShuffle(array):
+    randomIndexes = random.sample(range(0, len(words)), len(words))
+    newArray = []
+    count = 0
+    for i in range(0,len(array)):
+        newArray.append(array[i])
+    return newArray
