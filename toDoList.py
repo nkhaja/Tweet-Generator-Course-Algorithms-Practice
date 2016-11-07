@@ -59,7 +59,7 @@ def tasks(id=None):
         return jsonResponse
 
 
-@app.route('/lists', methods = ['GET','POST'])
+@app.route('/lists', methods = ['GET','POST', 'PUT'])
 @app.rooute('lists/<list_id>')
 def lists(list_id=None):
     dic = request.form.to_dict()
@@ -67,13 +67,18 @@ def lists(list_id=None):
     jsonResponse = jsonify(result)
     GET = request.method == 'GET'
     POST = request.method == 'POST'
+    PUT = request.method == 'PUT'
+    DELETE = request.method == 'DELETE'
     HAS_LIST = list_id != None
 
     if GET and !HAS_LIST:
-        return jsonify(allLists)
+        listNames = []
+        for someList in allLists:
+            listNames.append(someList['title'])
+        return listNames
 
 
-    if GET and :
+    if GET and HAS_LIST:
         return jsonify(allLists)
 
     if request.method == 'POST':
@@ -87,6 +92,24 @@ def lists(list_id=None):
                 return jsonify({"error": "409, A task with this id already exists"})
         allLists.append(dic)
         return jsonResponse
+
+    if PUT:
+        for someList in allLists:
+            if someList['id'] == id:
+                someList['title'] = dic['title']
+        return jsonify({"repsonse": "List with id %s successfully updated" % id})
+
+    if DELETE:
+        targetIndex = 0
+        for someList in allLists:
+            targetIndex = targetIndex + 1
+            if someList[id] == id:
+
+
+
+
+
+
 
 
 

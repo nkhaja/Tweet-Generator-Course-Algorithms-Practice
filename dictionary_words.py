@@ -55,11 +55,11 @@ def properAnagram(string):
     while badWord == True:
         letters = list(string)
         shuffle(letters)
-        newWord = " ".join(letters)
+        newWord = "".join(letters)
         print newWord
         if newWord in validWords:
             badWord = False
-            print newWord
+            print "Your anagram is " +  newWord
         count = count + 1
         if count == maximum:
             print("max reached")
