@@ -15,7 +15,7 @@ for i in range (0,100):
     numFourNine = numFourNine + 1
 print result
 
-result = 0.00000
+result = 0.0000
 numHalf = 0
 numFourNine = 0
 for i in range (0,100):
