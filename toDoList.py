@@ -1,14 +1,24 @@
 from flask import Flask, request, jsonify, json
 
+
 app = Flask(__name__)
 
 ### MARK: functions for operations on lists alone ###
+
+# returns array of every list name
+#allLists is an array of all Lists stored
 def getListNames(allLists):
     listNames = []
     for someList in allLists:
         listNames.append(someList["title"])
     return listNames
 
+
+
+
+#Checks allList array for lists' existence
+# @ id the id of the list
+# @ allLists an array of all lists stored
 def listExists(id, allLists):
     for someList in allLists:
         if someList["id"] == id:
@@ -16,7 +26,8 @@ def listExists(id, allLists):
         else:
             return None
 
-
+# checks the post has all properly formatted parameters
+# @ dict -- a dictionary representing the post request
 def checkValidListPost(someDict):
     try:
         newId = someDict['id']
@@ -28,6 +39,7 @@ def checkValidListPost(someDict):
             return jsonify({"error": "409, A task with this id already exists"})
     return
 
+
 def updateListWithId(allLists, id, dic): # allLists might be optional once hooked to Mongo
     someList = listExists
     for someList in allLists:
@@ -35,6 +47,7 @@ def updateListWithId(allLists, id, dic): # allLists might be optional once hooke
             someList['title'] = dic['title']
             return jsonify({"repsonse": "List with id %s successfully updated" % id})
         return jsonify({"error": "404, No list found with given id"})
+
 
 def deleteList(allLists, id):
     targetIndex = 0
@@ -50,13 +63,14 @@ def deleteList(allLists, id):
         return jsonify({"error": "404, No list found with given id"})
 
 
-### Mark Functions for working on tasks ###
+### MARK: Functions for working on tasks ###
 
 def getTask(id, allTasks):
     for item in allTasks:
         if item['id'] == id:
             return jsonify(item)
     return jsonify({"error": "404, No task found with given id"})
+
 
 def deleteTask(id, allTasks):
     for item in allTasks:
@@ -84,21 +98,24 @@ def tasks(id=None):
     result = request.form
     jsonResponse = jsonify(result)
 
+    # Get all Tasks
     if request.method == 'GET' and id == None:
         return jsonify(allTasks)
 
+    # Get task with a specific id
     if request.method == 'GET' and id !=None:
         return getTask(allTasks, id)
 
+    # Delete a specific task
     if request.method == 'DELETE' and id != None:
         return deleteTask(id, allTasks)
 
-
-
+    # Need to specify id to delete tasks
     if request.method == 'DELETE' and id == None:
-        return jsonify({"error": "404, No task found with given id"})
+        return jsonify({"error": "404, Please specify a task to delete"})
 
-
+    # Make a post if properly formatted, else return error
+    # Also ensures that post with same id doesn't already exist
     if request.method =='POST':
         try:
             newId = dic['id']
@@ -138,9 +155,9 @@ def lists(list_id=None):
             jsonify({"error": "404, No list found with given id"})
 
 
-    if request.method == 'POST':
+    if POST:
         checkValidListPost(dic) # program stops here if not valid
-        allLists.append(dic) # move
+        allLists.append(dic)
         return jsonResponse
 
     if PUT:
@@ -150,6 +167,29 @@ def lists(list_id=None):
         return deleteList(allLists, id)
 
 @app.route('/lists/<list_id>/tasks', methods = ['GET','POST', 'PUT'])
+def allTasksFromList(list_id):
+    dic = request.form.to_dict()
+    result = request.form
+    jsonResponse = jsonify(result)
+    GET = request.method == 'GET'
+    POST = request.method == 'POST'
+    PUT = request.method == 'PUT'
+
+    if GET:
+        requestedList = listExists(list_id, allLists)
+
+
+
+
+
+
+
+
+
+
+
+
+
 @app.route('/lists/<list_id>/tasks/<task_id>', methods = ['GET','POST', 'PUT'])
 def tasksForList(list_id = None, task_id = None):
         dic = request.form.to_dict()
