@@ -1,11 +1,12 @@
 from flask import Flask, request, jsonify, json
 import generator
+import os
 
 app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    return generator.main()
+    return jsonify(generator.main())
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
