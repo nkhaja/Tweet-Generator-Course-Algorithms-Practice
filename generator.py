@@ -3,7 +3,8 @@ from probabilityModel import StochasticSample
 import refinedCorpus
 
 def main():
-    txt = open("GoT.txt")
+    filename = "GoT.txt"
+    txt = open(filename)
     cleanText = refinedCorpus.refineText(txt)
     histogram = Dictogram(cleanText)
     stochasticSampler = StochasticSample(histogram)
