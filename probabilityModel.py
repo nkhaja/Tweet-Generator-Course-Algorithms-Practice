@@ -23,3 +23,8 @@ class StochasticSample(list):
         for i in range (0,numWords):
             sentence.append(self.getRandomWord())
         return " ".join(sentence)
+
+
+
+
+
