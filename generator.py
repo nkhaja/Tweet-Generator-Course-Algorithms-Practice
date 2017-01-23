@@ -1,11 +1,11 @@
 from histograms import Dictogram
 from probabilityModel import StochasticSample
-import refinedCorpus
-import codecs
-def main():
-    filename = "GoT.txt"
-    cleanText = refinedCorpus.refineText(filename)
-    histogram = Dictogram(cleanText)
-    stochasticSampler = StochasticSample(histogram)
+import markov_model
 
-    return stochasticSampler.generateSentence()
+def main():
+    textFile = open('sanitized_aristotle.txt', 'r').read()
+    model = markov_model.build_markov(textFile)
+    return markov_model.markov_walk(model)
+
+if __name__ == "__main__":
+    print main()
