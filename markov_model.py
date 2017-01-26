@@ -10,6 +10,7 @@ def build_markov(words):
         if word == '**start**':
             queue.append(word)
             queue.append(word)
+            queue.append(word)
             continue
 
         currentPair = tuple(queue)
@@ -31,7 +32,7 @@ def build_markov(words):
 def markov_walk(markov_model):
     start = '**start**'
     end = '**end**'
-    queue = [start, start]
+    queue = [start, start, start]
     output = []
     randWord = queue[1]
 
@@ -45,10 +46,17 @@ def markov_walk(markov_model):
         queue.append(randWord)
 
     output.pop()
+
+    if len(output) > 0:
+        output[0] = output[0].capitalize()
+
     fullSentence = ' '.join(output)
-    fullSentence[0].upper()
     fullSentence += '.'
-    return fullSentence
+
+    if len(fullSentence) < 2:
+        markov_walk(markov_model)
+    else:
+        return fullSentence
 
 if __name__ == '__main__':
     textFile = open('sanitized_aristotle.txt', 'r').read()

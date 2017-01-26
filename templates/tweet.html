@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>tweetistotle</title>
+    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename= 'style.css')}}" 
+  </head>
+  <body>
+
+<div class="headers">
+  <h1 class="tweet-header">Tweet<span class="name-istotle">istotle</span></h1>
+</div>
+
+  <div class="main">
+
+      <div class="quote-container content">
+        <div class="tweet-text">
+      <blockquote> "{{tweet_text}}"</blockquote>
+        </div>
+        <div class="buttons">
+            <button class="tweet-button"> Tweet </button>
+            <button class="generate-button"> Generate </button>
+        </div>
+      </div>
+
+      <div class="image-container content"></div>
+  </div>
+  </body>
+</html>

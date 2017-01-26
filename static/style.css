@@ -1,0 +1,124 @@
+
+
+h1 {
+    font-size: 60px;
+    height: 100px;
+}
+
+body {
+    background-color: orange;
+    color: white;
+    margin: 0;
+    height: 100%;
+}
+
+.name-istotle {
+    color: white;
+}
+
+.tweet-header{
+/*    color: #4099FF;*/
+}
+
+.image-container{
+    position: absolute;
+    left: 0;
+    background-image: url(aristotle_img.jpg);
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-color: black;
+    width: 35%;
+}
+
+.quote-container{
+    align-content: center;
+    text-align: center;
+    background-color: black;
+    width: 65%;
+
+}
+
+.content {
+/*    width: 50%;*/
+    height: 100%;
+    float: right;
+}
+
+button {
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.buttons{
+    position: absolute;
+    left: calc(67.5% - 105px);
+    bottom: 5%;
+    padding: 10px;
+    width: 20%;
+}
+
+.buttons > * {
+    padding: 12px;
+    text-align: center;
+}
+
+
+
+.generate-button{
+    background-color: #4CAF50;
+}
+
+.tweet-button{
+    background-color: blue;
+}
+
+
+.headers {
+    margin: 0;
+    padding: 30px;
+    text-align: center;
+    height: 100px;
+    background-color: black;
+    padding-top: 25px;
+}
+
+
+.main {
+    height: 600px;
+/*    border: 1px solid red;*/
+    position: relative;
+}
+
+
+
+.tweet-text {
+    align-content: center;
+    text-align: center;
+    height: 80%;
+    width: 100%;
+    word-wrap: break-word;
+    font-size: 50px;
+}
+
+@media (max-width: 1300px) {
+
+/*
+    .header {
+        background-color: red;
+    }
+*/
+
+    .content {
+        width: 100%;
+        height: 100%;
+    }
+
+    .image-container {
+        display: none;
+    }
+}
