@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>tweetistotle</title>
-    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename= 'style.css')}}" 
+    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename= 'style.css')}}"
   </head>
   <body>
 
@@ -17,11 +17,13 @@
       <blockquote> "{{tweet_text}}"</blockquote>
         </div>
         <div class="buttons">
+
             <button class="tweet-button"> Tweet </button>
+          <form action="/generate", method="get">
             <button class="generate-button"> Generate </button>
+          </form>
         </div>
       </div>
-
       <div class="image-container content"></div>
   </div>
   </body>
